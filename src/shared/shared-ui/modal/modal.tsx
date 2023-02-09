@@ -1,7 +1,4 @@
 import * as React from 'react';
-import { AuthContextWrapper } from '../../contexts/wrappers/auth-context.wrapper';
-import { SessionContextWrapper } from '../../contexts/wrappers/sesssion-context.wrapper';
-import { Close } from '../icons/icons';
 import { Portal } from '../portal';
 
 interface SizeProps {
@@ -113,11 +110,6 @@ export class Modal extends React.Component<ModalProps, any> {
         >
             <div className={headerClasses}>
                 {header && header}
-                <Close
-                    className={'float-right hover-opacity'}
-                    width={21}
-                    onClick={() => this.handleClick(null, false)}
-                />
             </div>
             <div className={`${contentClasses} px-20 pt-20 pb-5`}>
                 {show && content}
@@ -130,16 +122,12 @@ export class Modal extends React.Component<ModalProps, any> {
             <div className={'h-100'} onClick={(e: any) => this.handleClick(e, true)}>
                 {!!this.props.trigger && this.props.trigger}
             </div>
-            <SessionContextWrapper>
-                <AuthContextWrapper>
-                    <Portal elementId={this.props.portal || 'modals'}>
-                        <div>
-                            {this.renderOverlay()}
-                            {this.renderModal()}
-                        </div>
-                    </Portal>
-                </AuthContextWrapper>
-            </SessionContextWrapper>
+            <Portal elementId={this.props.portal || 'modals'}>
+                <div>
+                    {this.renderOverlay()}
+                    {this.renderModal()}
+                </div>
+            </Portal>
         </div>;
     }
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useAuthContext } from '../contexts/authentication/auth-context.hook';
 import { Portal } from '../shared-ui/portal';
 import { DesktopNavbar } from './desktop-navbar';
+import './navbar.scss';
 
 export const NavBar = (props: any) => {
 

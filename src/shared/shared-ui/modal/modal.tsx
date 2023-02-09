@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Portal } from '../portal';
+import './modal.scss';
 
 interface SizeProps {
     sm: number;

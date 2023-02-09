@@ -1,3 +1,5 @@
+import './icons.scss';
+
 export const Close = (props: any) => {
     return <div
         className={props.className}
@@ -110,5 +112,3 @@ export const LogoutIcon = (props: any) => {
         </svg>
     </div>;
 };
-
-

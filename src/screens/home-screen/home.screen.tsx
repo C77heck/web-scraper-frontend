@@ -1,4 +1,4 @@
-import { ScreenProps, ScreenRoute } from './libs/screen.route';
+import { ScreenProps, ScreenRoute } from '../libs/screen.route';
 
 export const HomeScreen = (props: ScreenProps) => {
     return <ScreenRoute {...props}>

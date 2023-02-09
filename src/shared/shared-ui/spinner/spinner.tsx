@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Backdrop } from '../modal/backdrop';
 import { Portal } from '../portal';
+import './spinner.scss';
 
 export interface SpinnerProps {
     isLoading?: boolean;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ButtonContent } from './button-content';
+import './button.scss';
 
 export interface ButtonProps {
     type?: "button" | "submit" | "reset" | undefined;

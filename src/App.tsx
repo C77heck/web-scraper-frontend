@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppRouter } from './app-router';
-import './App.css';
+import './App.scss';
 import { AuthContext } from './shared/contexts/authentication/auth.context';
 import { useAuth } from './shared/contexts/authentication/auth.hook';
 import { Spinner } from './shared/shared-ui/spinner/spinner';

@@ -81,5 +81,5 @@ export const useClient = <TData>() => {
         }
     };
 
-    return { fetch, error, data, loading };
+    return { get, post, put, error, data, loading };
 };

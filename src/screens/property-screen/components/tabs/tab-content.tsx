@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useClient } from '../../../../shared/hooks/client.hook';
 import { PropertyList } from '../property-list';
 import { TabOptions } from './property-tabs';
 
@@ -8,6 +9,7 @@ export interface TabContentProps {
 
 export const TabContent = ({ activeTab }: TabContentProps) => {
     const [properties, setProperties] = useState([]);
+    const client = useClient();
 
     useEffect(() => {
         (async () => console.log('setting the options'))();

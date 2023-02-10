@@ -13,7 +13,7 @@ export interface ScreenProps {
 
 export const ScreenRoute = (props: ScreenRouteProps) => {
     return <Routes>
-        <Route path={props.route} element={<div className={'w-100 p-20'}>
+        <Route path={props.route} element={<div className={'screen-view p-20'}>
             <NavBar/>
             {props.auth ? <AuthHandler>{props.children}</AuthHandler> : props.children}
         </div>}/>

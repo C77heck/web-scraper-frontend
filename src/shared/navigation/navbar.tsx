@@ -1,35 +1,41 @@
-import { useEffect, useState } from 'react';
-import { useAuthContext } from '../contexts/authentication/auth-context.hook';
+import { useCallback } from 'react';
+import { Link } from 'react-router-dom';
+import { Constants } from '../../libs/route-links';
 import { Portal } from '../shared-ui/portal';
-import { DesktopNavbar } from './desktop-navbar';
+import { LoginButton } from './login.button';
+import './navbar.scss';
 
 export const NavBar = (props: any) => {
+    const { home, propertyAnalytics } = Constants.routes;
+    const getColor = useCallback((link: string) => {
+        const genericClasses = 'text-decoration-none uppercase fs-mlg-17 fs-14 white-space-nowrap py-20 fw--700';
 
-    const [shouldRefetch, setShouldRefetch] = useState(false);
-    const { token, isLoggedIn } = useAuthContext();
-
-    const request = {};
-
-    useEffect(() => {
-        if (isLoggedIn || !!shouldRefetch) {
-            (async () => {
-                try {
-                    console.log('Pulling the latest data...');
-                    // await request.get('/crypto/latest_listings', {});
-                    console.log('Pulling the latest data was successful');
-                } catch (e) {
-                    console.log('Pulling the latest data was unsuccussfull');
-                }
-            })();
-        }
-    }, [isLoggedIn, shouldRefetch]);
-
-    useEffect(() => {
-        const timer = setInterval(() => setShouldRefetch(!shouldRefetch), 1000 * 60 * 3);
-        return () => clearInterval(timer);
-    }, [shouldRefetch]);
+        return window.location.pathname === link
+            ? `${genericClasses} text-color--active`
+            : `${genericClasses}`;
+    }, []);
 
     return <Portal elementId={'navbar'}>
-        <DesktopNavbar className={"display-none display-md-flex"}/>
+        <nav className={'nav-bar position-center'}>
+            <div className={'row max-width-vw-85'}>
+                <div className={'col-80 col-lg-60'}>
+                    <ul className="nav-bar--ul row">
+                        <li className={'col-20'}>
+                            <Link className={getColor(home.link)} to={home.link}>
+                                {home.title}
+                            </Link>
+                        </li>
+                        <li className={'col-20'}>
+                            <Link className={getColor(propertyAnalytics.link)} to={propertyAnalytics.link}>
+                                {propertyAnalytics.title}
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+                <div className={'col-20 col-lg-40 display-flex justify-content-end'}>
+                    <LoginButton/>
+                </div>
+            </div>
+        </nav>
     </Portal>;
 };

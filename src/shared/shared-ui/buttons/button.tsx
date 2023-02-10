@@ -12,7 +12,7 @@ export interface ButtonProps {
     onClick?: (e: any) => void;
     title?: string | JSX.Element;
     isLoading?: boolean;
-    textColor?: string;
+    textClass?: string;
     children?: any;
 }
 

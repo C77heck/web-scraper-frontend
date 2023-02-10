@@ -1,9 +1,8 @@
 import { ScreenProps, ScreenRoute } from '../libs/screen.route';
+import { PropertyTabs } from './components/tabs/property-tabs';
 
 export const PropertyScreen = (props: ScreenProps) => {
     return <ScreenRoute {...props}>
-        <div>
-            <h1>PROPERTY SCREEN</h1>
-        </div>
+        <PropertyTabs/>
     </ScreenRoute>;
 };

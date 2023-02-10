@@ -6,15 +6,16 @@ import { Modal } from '../shared-ui/modal/modal';
 import { LoginForm } from "./login.form";
 import { RegisterForm } from "./register.form";
 
-export const LoginButton = ({ isMobile }: any) => {
+export const LoginButton = () => {
     const { signout, isLoggedIn } = useAuthContext();
     const [isRegister, setIsRegister] = useState(false);
 
+    const content = (text: string) => <span className={'pb-5 color--light fs-18'}>{text}</span>;
+
     if (isLoggedIn) {
         return <Button
-            textColor={'text-color--light-1 fs-mlg-17 fs-16'}
-            buttonStyle={isMobile ? 'logout--mobile' : 'logout'}
-            title={'Logout'}
+            buttonStyle={'logout'}
+            children={content('Logout')}
             onClick={() => signout()}
         />;
     }
@@ -27,11 +28,9 @@ export const LoginButton = ({ isMobile }: any) => {
             : <LoginForm onClick={() => setIsRegister(true)}/>}
         size={{ sm: 90, md: 72, lg: 60, xl: 40 }}
         header={<h2 className={'header--3 text-align-center'}>{isRegister ? 'Sign up' : 'Sign in'}</h2>}
-        wrapperClass={isMobile ? 'align-self-center' : ''}
         trigger={<Button
-            textColor={'text-color--light-1 fs-mlg-17 fs-16'}
-            buttonStyle={isMobile ? 'login--mobile' : 'login'}
-            title={'Login'}
+            buttonStyle={'login'}
+            children={content('Login')}
         />}
     />;
 };

@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { PropertyList } from '../property-list';
+import { TabOptions } from './property-tabs';
 
 export interface TabContentProps {
-    activeTab: string;
+    activeTab: TabOptions;
 }
 
 export const TabContent = ({ activeTab }: TabContentProps) => {

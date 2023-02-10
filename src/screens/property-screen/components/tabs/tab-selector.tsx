@@ -1,10 +1,19 @@
+import { TabOptions } from './property-tabs';
+import './property-tabs.scss';
+
 export interface TabSelectorProps {
-    title: string;
-    onSelect: (id: string) => void;
+    title: TabOptions;
+    activeTab: TabOptions;
+    onSelect: (id: TabOptions) => void;
 }
 
-export const TabSelector = (props: TabSelectorProps) => {
-    return <div>
+export const TabSelector = ({ title, activeTab, onSelect }: TabSelectorProps) => {
+    const activeClass = activeTab === title ? 'tab-selector--active' : '';
 
+    return <div
+        className={`tab-selector ${activeClass}`}
+        onClick={() => onSelect(title)}
+    >
+        <span>{title}</span>
     </div>;
 };

@@ -1,4 +1,11 @@
 @mixin Helpers($lg, $xl, $md, $sm, $mlg) {
+
+    .screen-view {
+        margin-top: 18rem;
+        min-width: 100vw;
+        min-height: 100vh;
+    }
+
     .opacity {
         &--low {
             opacity: 0.4;

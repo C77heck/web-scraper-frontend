@@ -12,7 +12,7 @@ export interface ClientPostOptions extends ClientOptions {
 }
 
 export const useClient = <TData>() => {
-    const baseUrl = '';
+    const baseUrl = 'http://localhost:3131/api';
     const [error, setError] = useState<any>('');
     const [data, setData] = useState<TData | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
@@ -25,8 +25,10 @@ export const useClient = <TData>() => {
         try {
             setLoading(true);
 
+            const url = `${baseUrl}${options.url}`;
+
             const response = await superagent
-                .get(options.url)
+                .get(url)
                 .query(options?.query || {});
 
             if (!response.ok) {
@@ -45,8 +47,10 @@ export const useClient = <TData>() => {
         try {
             setLoading(true);
 
+            const url = `${baseUrl}${options.url}`;
+
             const response = await superagent
-                .post(options.url)
+                .post(url)
                 .send(options.data);
 
             if (!response.ok) {
@@ -65,8 +69,10 @@ export const useClient = <TData>() => {
         try {
             setLoading(true);
 
+            const url = `${baseUrl}${options.url}`;
+
             const response = await superagent
-                .put(options.url)
+                .put(url)
                 .send(options.data);
 
             if (!response.ok) {

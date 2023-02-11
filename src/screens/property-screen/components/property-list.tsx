@@ -1,6 +1,6 @@
 import { IProperty, PropertyCard } from './property-card';
 
-export const PropertyList = ({ properties }: { properties: IProperty[] }) => {
+export const PropertyList = ({ properties }: { properties: IProperty[] | null }) => {
     if (!properties?.length) {
         // todo impelemnt the empty list
         return null;

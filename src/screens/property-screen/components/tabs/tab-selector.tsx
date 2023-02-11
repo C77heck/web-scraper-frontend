@@ -1,3 +1,4 @@
+import { capitalize } from '../../../../shared/libs/helpers';
 import { TabOptions } from './property-tabs';
 import './property-tabs.scss';
 
@@ -14,6 +15,6 @@ export const TabSelector = ({ title, activeTab, onSelect }: TabSelectorProps) =>
         className={`tab-selector ${activeClass}`}
         onClick={() => onSelect(title)}
     >
-        <span>{title}</span>
+        <span>{capitalize(title)}</span>
     </div>;
 };

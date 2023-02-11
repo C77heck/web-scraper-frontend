@@ -1,4 +1,4 @@
-export const priceFormat = (amount: number, decimal = 1, currency: string = 'gbp') => {
+export const priceFormat = (amount: number, decimal = 1, currency: string = 'huf') => {
     const val = !!amount ? amount : 0;
     const price = round(val, decimal);
 
@@ -51,4 +51,12 @@ export const extractFilters = (query: any) => {
     }
 
     return filters;
+};
+
+export const capitalize = (text: string) => {
+    if (!text) {
+        return '';
+    }
+
+    return `${text[0].toUpperCase()}${text.slice(1)}`;
 };

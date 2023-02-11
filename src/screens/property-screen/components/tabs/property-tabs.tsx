@@ -2,21 +2,21 @@ import { useState } from 'react';
 import { TabContent } from './tab-content';
 import { TabSelector } from './tab-selector';
 
-export type TabOptions = 'Flats' | 'Houses';
+export type TabOptions = 'flats' | 'houses';
 
 export const PropertyTabs = () => {
-    const [activeTab, setActiveTab] = useState<TabOptions>('Flats');
+    const [activeTab, setActiveTab] = useState<TabOptions>('flats');
 
     return <div>
         <div className={'display-flex'}>
             <TabSelector
                 activeTab={activeTab}
-                title={'Flats'}
+                title={'flats'}
                 onSelect={(tab) => setActiveTab(tab)}
             />
             <TabSelector
                 activeTab={activeTab}
-                title={'Houses'}
+                title={'houses'}
                 onSelect={(tab) => setActiveTab(tab)}
             />
         </div>

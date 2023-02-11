@@ -12,13 +12,12 @@ export const TabContent = ({ activeTab }: TabContentProps) => {
     const { data, get } = useClient<IProperty[]>();
 
     useEffect(() => {
-        (async () => get({ url: '/analytics/kecskemet/flat' }))();
+        (async () => get({ url: `/analytics/kecskemet/${activeTab}` }))();
     }, []);
 
     useEffect(() => {
-        (async () => get({ url: '/analytics/kecskemet/flat' }))();
+        (async () => get({ url: `/analytics/kecskemet/${activeTab}` }))();
     }, [activeTab]);
-    // todo propabable we decide the path of the tab and we fetch accordingly.
-    // think about the caching too.
+
     return <PropertyList properties={data}/>;
 };

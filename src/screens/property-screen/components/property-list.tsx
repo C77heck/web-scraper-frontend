@@ -6,7 +6,7 @@ export const PropertyList = ({ properties }: { properties: IProperty[] | null })
         return null;
     }
 
-    return <div className={'row'}>
-        {properties.map(property => <div className={'col-25'}><PropertyCard key={property._id} property={property}/></div>)}
+    return <div className={'row mt-15'}>
+        {properties.map(property => <div className={'col-33'}><PropertyCard key={property._id} property={property}/></div>)}
     </div>;
 };

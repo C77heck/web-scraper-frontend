@@ -18,8 +18,8 @@ export interface IProperty {
 
 const PropertyDisplay = (props: { title: string, value: string | number }) => {
     return <div className={'display-flex my-5'}>
-        <span className={'fs-15 fw-700'}>{props.title}</span>
-        <span className={'fs-15'}>: {props.value}</span>
+        <span className={'fs-15 fw-700'}>{props.title}:</span>
+        <span className={'fs-15 pl-5 white-space-nowrap'}>{props.value}</span>
     </div>;
 };
 

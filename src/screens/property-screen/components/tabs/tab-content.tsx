@@ -6,18 +6,18 @@ import { TabOptions } from './property-tabs';
 
 export interface TabContentProps {
     activeTab: TabOptions;
+    query: object;
 }
 
-export const TabContent = ({ activeTab }: TabContentProps) => {
+export const TabContent = ({ activeTab, query }: TabContentProps) => {
     const { data, get } = useClient<IProperty[]>();
-
     useEffect(() => {
-        (async () => get({ url: `/analytics/kecskemet/${activeTab}` }))();
+        (async () => get({ url: `/analytics/kecskemet/${activeTab}`, query }))();
     }, []);
 
     useEffect(() => {
-        (async () => get({ url: `/analytics/kecskemet/${activeTab}` }))();
-    }, [activeTab]);
+        (async () => get({ url: `/analytics/kecskemet/${activeTab}`, query }))();
+    }, [activeTab, query]);
 
     return <PropertyList properties={data}/>;
 };

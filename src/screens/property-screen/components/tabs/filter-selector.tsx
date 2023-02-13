@@ -1,4 +1,5 @@
 import { capitalize } from '../../../../shared/libs/helpers';
+import { ArrowDown, ArrowUp } from '../../../../shared/shared-ui/icons/icons';
 import './property-tabs.scss';
 
 export interface FilterSelectorProps {
@@ -8,13 +9,16 @@ export interface FilterSelectorProps {
 }
 
 export const FilterSelector = ({ title, value, onSelect }: FilterSelectorProps) => {
-    // todo need the icon
-    const activeClass = value === -1 ? 'tab-selector--active' : '';
+    const iconClasses = 'color--grey position-center pt-3';
+    const directionIcon = value === -1
+        ? <ArrowDown className={iconClasses} width={24}/>
+        : <ArrowUp className={iconClasses} width={24}/>;
 
     return <div
-        className={`tab-selector ${activeClass}`}
+        className={'tab-selector'}
         onClick={() => onSelect(value * -1)}
     >
         <span>{capitalize(title)}</span>
+        {directionIcon}
     </div>;
 };

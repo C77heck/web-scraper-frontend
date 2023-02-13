@@ -10,7 +10,7 @@ export const PropertyTabs = () => {
     const [price, setPrice] = useState<number>(1);
     const [sqmPrice, setSqmPrice] = useState<number>(1);
     const [size, setSize] = useState<number>(1);
-    // todo size // price // sqm price per
+    // todo text search for the address or price.
     return <div>
         <div className={'display-flex'}>
             <TabSelector
@@ -41,7 +41,7 @@ export const PropertyTabs = () => {
         </div>
         <TabContent
             activeTab={activeTab}
-            query={{ size, sqmPrice, price }}
+            query={{ sort: { size, sqmPrice, price } }}
         />
     </div>;
 };

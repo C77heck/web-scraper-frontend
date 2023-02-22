@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FilterSelector } from './filter-selector';
+import { FilterGroup } from './filter-group';
 import { TabContent } from './tab-content';
 import { TabSelector } from './tab-selector';
 
@@ -7,10 +7,9 @@ export type TabOptions = 'flats' | 'houses' | 'price' | 'sqmPrice' | 'size';
 
 export const PropertyTabs = () => {
     const [activeTab, setActiveTab] = useState<TabOptions>('flats');
-    const [price, setPrice] = useState<number>(1);
-    const [sqmPrice, setSqmPrice] = useState<number>(1);
-    const [size, setSize] = useState<number>(1);
+    const [sort, setSort] = useState<Record<string, 1 | -1 | undefined>>({});
     // todo text search for the address or price.
+    // todo paginator to add
     return <div>
         <div className={'display-flex'}>
             <TabSelector
@@ -23,25 +22,11 @@ export const PropertyTabs = () => {
                 title={'houses'}
                 onSelect={(tab) => setActiveTab(tab)}
             />
-            <FilterSelector
-                value={price}
-                title={'price'}
-                onSelect={(direction) => setPrice(direction)}
-            />
-            <FilterSelector
-                value={sqmPrice}
-                title={'sqm/price'}
-                onSelect={(direction) => setSqmPrice(direction)}
-            />
-            <FilterSelector
-                value={size}
-                title={'size'}
-                onSelect={(direction) => setSize(direction)}
-            />
+            <FilterGroup onSelect={(sort) => setSort(sort)}/>
         </div>
         <TabContent
             activeTab={activeTab}
-            query={{ sort: { size, sqmPrice, price } }}
+            query={{ sort }}
         />
     </div>;
 };

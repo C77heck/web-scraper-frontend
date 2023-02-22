@@ -99,7 +99,7 @@ export class Paginator extends React.Component<PaginatorProps, any> {
                 className={'text--paginator cursor-pointer w-100 position-center'}
                 onClick={() => this.manageOnChange(item)}
             >
-                <span>{!isDot ? item + 1 : '...'}</span>
+                <span className={'color--text-1'}>{!isDot ? item + 1 : '...'}</span>
             </a>
         </div>;
     }

@@ -5,7 +5,7 @@
         --color-primary-3: #2a89e8eb;
         --color-primary-4: #abcff4;
         --color-primary-transparent: rgba(69, 224, 153, 0.53);
-
+        --color-text-1: #dcdcdc;
         --color-secondary-1: #15bd9e;
         --color-secondary-2: #5fda8b;
         --color-secondary-3: #d29944;
@@ -83,6 +83,9 @@
 
 
     .color {
+        &--text-1 {
+            color: var(--color-text-1);
+        }
 
         &--disabled {
             color: var(--color-shadow);

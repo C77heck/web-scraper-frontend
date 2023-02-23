@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { priceFormat } from '../../../shared/libs/helpers';
 import './property-card.scss';
@@ -14,6 +15,8 @@ export interface IProperty {
     __v: number;
     createdAt: Date;
     updatedAt: Date;
+    numberOfDaysAdvertised: number;
+    lastDayOn: Date;
 }
 
 const PropertyDisplay = (props: { title: string, value: string | number }) => {
@@ -30,6 +33,8 @@ export const PropertyCard = ({ property }: { property: IProperty }) => {
             <PropertyDisplay title={'Unit price'} value={`${property.sqmPrice} / m2`}/>
             <PropertyDisplay title={'Size'} value={`${property.size} m2`}/>
             <PropertyDisplay title={'Price'} value={priceFormat(property.total)}/>
+            <PropertyDisplay title={'Last day on'} value={moment(property.lastDayOn).format('YYYY-MM-DD')}/>
+            <PropertyDisplay title={'Number of days on'} value={property.numberOfDaysAdvertised}/>
         </div>
     </Link>;
 };

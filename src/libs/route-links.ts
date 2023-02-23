@@ -4,6 +4,10 @@ export const Constants = {
             link: '/',
             title: 'Home'
         },
+        propertyList: {
+            link: '/properties',
+            title: 'Properties'
+        },
         propertyAnalytics: {
             link: '/property-analytics',
             title: 'Property analytics'

@@ -26,7 +26,7 @@ export const TabContent = ({ activeTab, query }: TabContentProps) => {
         (async () => fetchData())();
     }, [activeTab, query]);
 
-    const fetchData = async (page = 0) => get({ url: `/analytics/kecskemet/${activeTab}`, query: { ...query, page } });
+    const fetchData = async (page = 0) => get({ url: `/by-location/kecskemet/${activeTab}`, query: { ...query, page } });
 
     return <>
         <PropertyList properties={data?.data || null}/>;

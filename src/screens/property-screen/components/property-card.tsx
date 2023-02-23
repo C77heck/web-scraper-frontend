@@ -27,10 +27,10 @@ const PropertyDisplay = (props: { title: string, value: string | number }) => {
 };
 
 export const PropertyCard = ({ property }: { property: IProperty }) => {
-    return <Link to={property.href}>
+    return <Link to={property.href} target={'_blank'}>
         <div className={'property-card box-shadow m-10'}>
             <PropertyDisplay title={'Address'} value={property.address}/>
-            <PropertyDisplay title={'Unit price'} value={`${property.sqmPrice} / m2`}/>
+            <PropertyDisplay title={'Unit price'} value={`${Math.round(property.sqmPrice)} / m2`}/>
             <PropertyDisplay title={'Size'} value={`${property.size} m2`}/>
             <PropertyDisplay title={'Price'} value={priceFormat(property.total)}/>
             <PropertyDisplay title={'Last day on'} value={moment(property.lastDayOn).format('YYYY-MM-DD')}/>

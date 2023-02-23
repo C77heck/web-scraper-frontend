@@ -10,10 +10,10 @@ export const FilterGroup = ({ onSelect }: FilterGroupProps) => {
         total: undefined,
         sqmPrice: undefined,
         size: undefined,
+        lastDayOn: undefined,
     });
 
     useEffect(() => {
-        console.log('triggered');
         onSelect(sort);
     }, [sort]);
 
@@ -54,6 +54,11 @@ export const FilterGroup = ({ onSelect }: FilterGroupProps) => {
             value={sort.size}
             title={'size'}
             onSelect={(direction) => handleSort('size', direction)}
+        />
+        <FilterSelector
+            value={sort.lastDayOn}
+            title={'Freshness'}
+            onSelect={(direction) => handleSort('lastDayOn', direction)}
         />
     </>;
 };

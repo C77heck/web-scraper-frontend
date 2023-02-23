@@ -8,8 +8,7 @@ export type TabOptions = 'flats' | 'houses' | 'price' | 'sqmPrice' | 'size';
 export const PropertyTabs = () => {
     const [activeTab, setActiveTab] = useState<TabOptions>('flats');
     const [sort, setSort] = useState<Record<string, 1 | -1 | undefined>>({});
-    // todo text search for the address or price.
-    // todo paginator to add
+
     return <div>
         <div className={'display-flex'}>
             <TabSelector

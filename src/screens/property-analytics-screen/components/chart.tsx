@@ -33,14 +33,6 @@ export const options: any = {
     },
     stacked: false,
     plugins: {
-        datalabels: {
-            formatter: (val: any, context: any) => `${val}%`,
-        },
-        tooltip: {
-            callbacks: {
-                label: (ttItem: any) => `${ttItem.formattedValue}%`
-            }
-        },
         title: {
             display: false,
             text: '',
@@ -53,9 +45,6 @@ export const options: any = {
             position: 'left' as const,
             ticks: {
                 stepSize: 2,
-                callback: (value: any, index: any, values: any) => {
-                    return `${value}%`;
-                },
             },
         },
     },

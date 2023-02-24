@@ -7,9 +7,14 @@ export interface DatasetsOptionProps {
 }
 
 export const SqmPriceChart = (props: DatasetsOptionProps) => {
-
-    return <div>
+    console.log(props.dataset);
+    return <div className={'background-color--light-1'}>
         <Spinner isLoading={props.loading}/>
-        <Chart data={props.dataset} chartName={'Bar'}/>
+        <Chart
+            title={'Square meter prices'}
+            data={props.dataset}
+            chartName={'Line'}
+            colorIndex={1}
+        />
     </div>;
 };

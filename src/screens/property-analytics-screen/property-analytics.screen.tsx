@@ -5,7 +5,7 @@ import { SqmPriceChart } from './components/sqm-price.chart';
 
 export interface AnalyticsData {
     sqmPrices: number[];
-    dateOn: number[];
+    datesOn: Date[];
     totalPrices: number[];
     sizes: number[];
 }
@@ -14,7 +14,9 @@ export const PropertyAnalyticsScreen = (props: ScreenProps) => {
     const { get, data, loading } = useClient<AnalyticsData>();
 
     useEffect(() => {
-        (async () => get({ url: '/analytics/kecskemet/flat' }))();
+        console.log('got in here');
+
+        (async () => get({ url: '/analytics/kecskemet/flats' }))();
     }, []);
 
     return <ScreenRoute {...props}>

@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import { useClient } from '../../shared/hooks/client.hook';
+import { Spinner } from '../../shared/shared-ui/spinner/spinner';
 import { ScreenProps, ScreenRoute } from '../libs/screen.route';
-import { SqmPriceChart } from './components/sqm-price.chart';
+import { ChartDisplay } from './components/chart-display';
 
 export interface AnalyticsData {
     sqmPrices: number[];
-    datesOn: Date[];
+    daysOn: number[];
     totalPrices: number[];
     sizes: number[];
 }
@@ -20,19 +21,38 @@ export const PropertyAnalyticsScreen = (props: ScreenProps) => {
     }, []);
 
     return <ScreenRoute {...props}>
-        <div className={'row'}>
-            <div className={'col-md-50 col-100'}>
-                <SqmPriceChart dataset={data?.sqmPrices || []} loading={loading}/>
+        <Spinner asOverlay={true} isLoading={loading}/>
+        {!loading && <div className={'row'}>
+            <div className={'col-100'}>
+                <ChartDisplay
+                    colorIndex={0}
+                    title={'Square meter prices'}
+                    dataset={data?.sqmPrices || []}
+                />
             </div>
-            <div className={'col-md-50 col-100'}>
-
+            <div className={'col-100'}>
+                <ChartDisplay
+                    colorIndex={2}
+                    type={'Radar'}
+                    title={'Total prices'}
+                    dataset={data?.totalPrices || []}
+                />
             </div>
-            <div className={'col-md-50 col-100'}>
-
+            <div className={'col-100'}>
+                <ChartDisplay
+                    colorIndex={3}
+                    title={'Property sizes'}
+                    dataset={data?.sizes || []}
+                />
             </div>
-            <div className={'col-md-50 col-100'}>
-
+            <div className={'col-100'}>
+                <ChartDisplay
+                    colorIndex={1}
+                    title={'Properties advertised by day'}
+                    type={'Radar'}
+                    dataset={data?.daysOn || [] as any}
+                />
             </div>
-        </div>
+        </div>}
     </ScreenRoute>;
 };

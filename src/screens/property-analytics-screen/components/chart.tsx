@@ -89,8 +89,8 @@ export class Chart extends React.Component<GraphProps, ChartStateProps> {
         data: {
             label: 'Dataset 1',
             data: [1, 2, 3],
-            borderColor: 'rgb(77,177,222)',
-            backgroundColor: 'rgba(32,156,238,0.5)',
+            borderColor: 'rgb(222,77,154)',
+            backgroundColor: 'rgba(169,32,37,0.5)',
             yAxisID: 'y',
         }
     };
@@ -106,7 +106,7 @@ export class Chart extends React.Component<GraphProps, ChartStateProps> {
     }
 
     public setChartData() {
-        const colours = this.props?.customBarColours ?? this.props.customBarColours;
+        const colours = this.colours[this.props?.colorIndex || 0];
 
         this.setState({
             data: {
@@ -122,9 +122,7 @@ export class Chart extends React.Component<GraphProps, ChartStateProps> {
     public render() {
         const labels = (this.props?.labels || []);
         const datasets = [this.state.data];
-        const baseColour = this.colours[this.props?.colorIndex || 0];
-        console.log(baseColour, this.props?.colorIndex, this.props?.colorIndex || 0);
-        const blockOptions = { ...options, ...baseColour };
+        const blockOptions = { ...options };
 
         if (this.props.title) {
             blockOptions.plugins = {

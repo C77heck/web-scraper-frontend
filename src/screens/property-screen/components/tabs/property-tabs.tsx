@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { TabContent } from '../../../../shared/components/tab-content';
+import { TabSelector } from '../../../../shared/components/tab-selector';
 import { FilterGroup } from './filter-group';
-import { TabContent } from './tab-content';
-import { TabSelector } from './tab-selector';
 
 export type TabOptions = 'flats' | 'houses' | 'price' | 'sqmPrice' | 'size';
 
@@ -24,6 +24,7 @@ export const PropertyTabs = () => {
             <FilterGroup onSelect={(sort) => setSort(sort)}/>
         </div>
         <TabContent
+            url={`/by-location/kecskemet/${activeTab}`}
             activeTab={activeTab}
             query={{ sort }}
         />

@@ -1,6 +1,5 @@
 import { capitalize } from '../../../../shared/libs/helpers';
 import { ArrowDown, ArrowUp } from '../../../../shared/shared-ui/icons/icons';
-import './property-tabs.scss';
 
 export interface FilterSelectorProps {
     title: string;

@@ -6,7 +6,7 @@ import { LoginButton } from './login.button';
 import './navbar.scss';
 
 export const NavBar = (props: any) => {
-    const { home, propertyList, propertyAnalytics } = Constants.routes;
+    const { home, propertyList, propertyAnalytics, specialFollows } = Constants.routes;
     const getColor = useCallback((link: string) => {
         const genericClasses = 'text-decoration-none uppercase fs-mlg-17 fs-14 white-space-nowrap py-20 fw--700';
 
@@ -33,6 +33,11 @@ export const NavBar = (props: any) => {
                         <li className={'col-20'}>
                             <Link className={getColor(propertyAnalytics.link)} to={propertyAnalytics.link}>
                                 {propertyAnalytics.title}
+                            </Link>
+                        </li>
+                        <li className={'col-20'}>
+                            <Link className={getColor(specialFollows.link)} to={specialFollows.link}>
+                                {specialFollows.title}
                             </Link>
                         </li>
                     </ul>

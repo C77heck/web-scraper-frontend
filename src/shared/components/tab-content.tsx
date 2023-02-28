@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
-import { useClient } from '../../../../shared/hooks/client.hook';
-import { Paginator } from '../../../../shared/shared-ui/paginator/paginator';
-import { IProperty } from '../property-card';
-import { PropertyList } from '../property-list';
-import { TabOptions } from './property-tabs';
+import { IProperty } from '../../screens/property-screen/components/property-card';
+import { PropertyList } from '../../screens/property-screen/components/property-list';
+import { useClient } from '../hooks/client.hook';
+import { Paginator } from '../shared-ui/paginator/paginator';
 
 export interface TabContentProps {
-    activeTab: TabOptions;
+    activeTab: any;
     query: object;
+    url: string;
 }
 
 export interface PaginatedResponse<TData> {
@@ -16,7 +16,7 @@ export interface PaginatedResponse<TData> {
     page: number;
 }
 
-export const TabContent = ({ activeTab, query }: TabContentProps) => {
+export const TabContent = ({ activeTab, query, url }: TabContentProps) => {
     const { data, get } = useClient<PaginatedResponse<IProperty>>();
     useEffect(() => {
         (async () => fetchData())();
@@ -26,7 +26,7 @@ export const TabContent = ({ activeTab, query }: TabContentProps) => {
         (async () => fetchData())();
     }, [activeTab, query]);
 
-    const fetchData = async (page = 0) => get({ url: `/by-location/kecskemet/${activeTab}`, query: { ...query, page } });
+    const fetchData = async (page = 0) => get({ url: url, query: { ...query, page } });
 
     return <>
         <PropertyList properties={data?.data || null}/>;

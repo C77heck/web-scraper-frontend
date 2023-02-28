@@ -12,5 +12,9 @@ export const Constants = {
             link: '/property-analytics',
             title: 'Property analytics'
         },
+        specialFollows: {
+            link: '/special-follows',
+            title: 'Special follows'
+        },
     }
 };

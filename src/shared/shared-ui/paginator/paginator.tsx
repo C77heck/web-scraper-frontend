@@ -11,11 +11,6 @@ export interface PaginationProp {
     middle: any[] | null;
 }
 
-export interface Pagination {
-    page: number;
-    limit: number;
-}
-
 export interface PaginatorProps {
     maxLength?: number;
     pageChange: (page: number) => void;
@@ -50,6 +45,9 @@ export class Paginator extends React.Component<PaginatorProps, PaginatorState> {
 
     public componentDidUpdate(prevProps: Readonly<PaginatorProps>, prevState: Readonly<any>, snapshot?: any) {
         if (prevProps?.currentPage !== this.props.currentPage) {
+            this.setPagination();
+        }
+        if (prevProps?.total !== this.props.total) {
             this.setPagination();
         }
     }

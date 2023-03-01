@@ -30,7 +30,7 @@ export const SpecialFollowsTabs = () => {
         <TabContent
             activeTab={activeTab}
             query={{ sort }}
-            url={`/analytics/special-follows/${activeTab}`}
+            url={`/special-follows/${activeTab}`}
         />
     </div>;
 };

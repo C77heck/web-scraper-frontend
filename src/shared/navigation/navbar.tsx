@@ -20,7 +20,7 @@ export const NavBar = (props: any) => {
             <div className={'row max-width-vw-85'}>
                 <div className={'col-80 col-lg-60'}>
                     <ul className="nav-bar--ul row">
-                        <li className={'col-20'}>
+                        <li className={'col-15'}>
                             <Link className={getColor(home.link)} to={home.link}>
                                 {home.title}
                             </Link>
@@ -30,14 +30,14 @@ export const NavBar = (props: any) => {
                                 {propertyList.title}
                             </Link>
                         </li>
-                        <li className={'col-20'}>
-                            <Link className={getColor(propertyAnalytics.link)} to={propertyAnalytics.link}>
-                                {propertyAnalytics.title}
-                            </Link>
-                        </li>
-                        <li className={'col-20'}>
+                        <li className={'col-25'}>
                             <Link className={getColor(specialFollows.link)} to={specialFollows.link}>
                                 {specialFollows.title}
+                            </Link>
+                        </li>
+                        <li className={'col-25'}>
+                            <Link className={getColor(propertyAnalytics.link)} to={propertyAnalytics.link}>
+                                {propertyAnalytics.title}
                             </Link>
                         </li>
                     </ul>

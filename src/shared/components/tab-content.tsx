@@ -3,6 +3,7 @@ import { IProperty } from '../../screens/property-screen/components/property-car
 import { PropertyList } from '../../screens/property-screen/components/property-list';
 import { useClient } from '../hooks/client.hook';
 import { Paginator } from '../shared-ui/paginator/paginator';
+import { Spinner } from '../shared-ui/spinner/spinner';
 
 export interface TabContentProps {
     activeTab: any;
@@ -17,7 +18,7 @@ export interface PaginatedResponse<TData> {
 }
 
 export const TabContent = ({ activeTab, query, url }: TabContentProps) => {
-    const { data, get } = useClient<PaginatedResponse<IProperty>>();
+    const { data, get, loading } = useClient<PaginatedResponse<IProperty>>();
     useEffect(() => {
         (async () => fetchData())();
     }, []);
@@ -30,6 +31,7 @@ export const TabContent = ({ activeTab, query, url }: TabContentProps) => {
 
     return <>
         <PropertyList properties={data?.data || null}/>;
+        <Spinner asOverlay={true} isLoading={loading}/>
         <Paginator
             pageChange={page => fetchData(page)}
             total={data?.total || 0}

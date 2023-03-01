@@ -23,7 +23,12 @@ export interface PaginatorProps {
     currentPage: number;
 }
 
-export class Paginator extends React.Component<PaginatorProps, any> {
+export interface PaginatorState {
+    paginationMap: PaginationProp | null;
+    activeItem: number,
+}
+
+export class Paginator extends React.Component<PaginatorProps, PaginatorState> {
     public paginationMap: PaginationProp = {
         startDot: false,
         startDotRef: false,
@@ -34,12 +39,19 @@ export class Paginator extends React.Component<PaginatorProps, any> {
         end: null,
     };
 
-    public state = {
+    public state: PaginatorState = {
         activeItem: NaN,
+        paginationMap: null
     };
 
     public componentDidMount() {
-        this.setState({ activeItem: this.props.currentPage });
+        this.setPagination();
+    }
+
+    public componentDidUpdate(prevProps: Readonly<PaginatorProps>, prevState: Readonly<any>, snapshot?: any) {
+        if (prevProps?.currentPage !== this.props.currentPage) {
+            this.setPagination();
+        }
     }
 
     public getMiddlePaginatorValues(pages: number[], page: number): number[] {
@@ -146,9 +158,21 @@ export class Paginator extends React.Component<PaginatorProps, any> {
         return isTrue ? classIfTrue : classIfFalse;
     }
 
-    public render() {
+    public setPagination() {
         const { total, currentPage } = this.props;
-        const { startDot, startDotRef, start, endDot, endDotRef, end, middle } = this.getPaginationMap(total, currentPage);
+        const paginationMap = this.getPaginationMap(total, currentPage);
+
+        this.setState({ paginationMap, activeItem: currentPage });
+    }
+
+    public render() {
+        const startDot = this.state.paginationMap?.startDot;
+        const startDotRef = this.state.paginationMap?.startDotRef;
+        const start = this.state.paginationMap?.start;
+        const endDot = this.state.paginationMap?.endDot;
+        const endDotRef = this.state.paginationMap?.endDotRef;
+        const end = this.state.paginationMap?.end;
+        const middle = this.state.paginationMap?.middle;
 
         return <div className={'position-center py-6 mt-7'}>
             {this.renderPrev()}

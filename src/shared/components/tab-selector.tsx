@@ -15,6 +15,6 @@ export const TabSelector: React.FC<TabSelectorProps> = ({ title, activeTab, onSe
         className={`tab-selector ${activeClass}`}
         onClick={() => onSelect(title)}
     >
-        <span>{capitalize(title)}</span>
+        <span className={'fs-14'}>{capitalize(title)}</span>
     </div>;
 };

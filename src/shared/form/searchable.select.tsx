@@ -22,6 +22,9 @@ export class SearchableDropdown extends AbstractDropdown<SearchableDropdownProps
         if (prevState.searchedValue !== this.state.searchedValue) {
             this.manageSearch();
         }
+        if (prevProps.options !== this.props.options) {
+            this.manageSearch();
+        }
     }
 
     public manageEnterKeyPress() {
@@ -79,8 +82,8 @@ export class SearchableDropdown extends AbstractDropdown<SearchableDropdownProps
 
     public renderArrows() {
         return this.state.show
-            ? <ArrowUp color={'rgba(8, 61, 66, 0.53)'} className={'position-center arrow-wrapper'} width={15}/>
-            : <ArrowDown color={'rgba(8, 61, 66, 0.53)'} className={'position-center arrow-wrapper'} width={15}/>;
+            ? <ArrowUp color={'rgba(8, 61, 66, 0.53)'} className={'position-center arrow-wrapper background-color--light-1'} width={15}/>
+            : <ArrowDown color={'rgba(8, 61, 66, 0.53)'} className={'position-center arrow-wrapper background-color--light-1'} width={15}/>;
     }
 
     public renderDropdownContent() {
@@ -105,7 +108,7 @@ export class SearchableDropdown extends AbstractDropdown<SearchableDropdownProps
                 disabled={this.props.disabled}
             />
 
-            <span className={'searchable-input w-100 fs-13 line-height-17 p-3'}>{this.props?.value?.title || '-'}</span>
+            <span className={'searchable-input w-100 fs-13 line-height-17 p-3 background-color--light-1'}>{this.props?.value?.title || '-'}</span>
 
             {this.renderArrows()}
         </>;

@@ -10,14 +10,14 @@ export interface ValidatorInterface {
     errorMessage: string;
 }
 
-export interface LocationSelector {
-    onChange: () => void;
+export interface LocationSelectorProps {
+    onSelect: (location: string) => void;
 }
 
-export const LocationSelector = (props: any) => {
+export const LocationSelector = ({ onSelect }: LocationSelectorProps) => {
     const { get, loading, data, error } = useClient<{ locations: OptionProps[] }>();
     const { state, handleDataChange, focusChange } = useInput({ hasError: false, isInFocus: true, errorMessage: '' });
-    const { inputHandler, inputState } = useForm({
+    const { inputHandler, inputState: { inputs } } = useForm({
         inputs: {
             location: {
                 value: '',
@@ -31,6 +31,8 @@ export const LocationSelector = (props: any) => {
         (async () => get({ url: '/location-options' }))();
     }, []);
 
+    useEffect(() => onSelect(inputs.location?.value?.value), [inputs.location.value]);
+
     const handleChange = ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
         handleDataChange({ hasError: false, errorMessage: '' });
     };
@@ -39,20 +41,23 @@ export const LocationSelector = (props: any) => {
         inputHandler({
             value: isChosen ? '' : option,
             valid: !state.hasError,
-            inputName: props.name
+            inputName: 'location'
         });
     };
-
-    return <div>
-        <SearchableDropdown
-            currentValue={''}
-            handleChange={handleChange}
-            onChange={inputHandler}
-            onClickHandler={onClickChange}
-            value={{ value: '', title: '' }}
-            name={'location'}
-            options={data?.locations || []}
-            validators={[]}
-        />
+    // todo fix the sizing
+    return <div className={'col-md-40 col-100'}>
+        <div className={'w-px-200 position-relative'}>
+            <SearchableDropdown
+                inputClasses={'mb-30'}
+                currentValue={''}
+                handleChange={handleChange}
+                onChange={inputHandler}
+                onClickHandler={onClickChange}
+                value={inputs.location.value}
+                name={'location'}
+                options={data?.locations || []}
+                validators={[]}
+            />
+        </div>
     </div>;
 };

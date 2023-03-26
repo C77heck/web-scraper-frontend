@@ -130,8 +130,8 @@ export abstract class AbstractDropdown<TProps extends DropdownProps<any>, TState
     }
 
     public render(): JSX.Element {
-        return <div className={'w-100'} ref={this.divRef}>
-            <div className={'display-flex'} onClick={() => this.setState({ show: !this.state.show })}>
+        return <div className={`w-100 ${this.props.inputClasses}`} ref={this.divRef}>
+            <div className={'display-flex border-radius-px-3 overflow-hidden'} onClick={() => this.setState({ show: !this.state.show })}>
                 {this.renderInputContent()}
             </div>
             <div className={`${this.props.className} dropdown-general dropdown dropdown--searchable dropdown--${this.state.show ? 'show' : 'hide'} display-flex flex-column`}>

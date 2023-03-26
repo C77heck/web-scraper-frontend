@@ -7,10 +7,11 @@ export type SpecialFollowsTabOptions = 'studioFlats' | 'cheapFlats' | 'cheapHous
 
 export const SpecialFollowsTabs = () => {
     const [activeTab, setActiveTab] = useState<SpecialFollowsTabOptions>('studioFlats');
+    const [location, setLocation] = useState<string>('');
 
     return <div>
         <div>
-            <LocationSelector/>
+            <LocationSelector onSelect={(location) => setLocation(location)}/>
         </div>
         <div className={'display-flex'}>
             <TabSelector
@@ -37,7 +38,7 @@ export const SpecialFollowsTabs = () => {
         <TabContent
             activeTab={activeTab}
             query={{}}
-            url={`/special-follows/${activeTab}`}
+            url={`/special-follows/${activeTab}?location=${location}`}
         />
     </div>;
 };

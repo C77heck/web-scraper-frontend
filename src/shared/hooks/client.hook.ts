@@ -14,7 +14,7 @@ export interface ClientPostOptions extends ClientOptions {
 export const useClient = <TData>() => {
     const baseUrl = 'http://localhost:3131/api';
     const [error, setError] = useState<any>('');
-    const [data, setData] = useState<TData | null>(null);
+    const [data, setData] = useState<TData>();
     const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {

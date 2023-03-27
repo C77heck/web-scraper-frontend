@@ -181,11 +181,13 @@ textarea {
 
 .search-bar-input {
     border: solid 1px var(--text-color-light) !important;
-    border-radius: 4px;
+    border-radius: 8px;
     padding: 5px;
-    height: 30px !important;
     margin: 5px 0;
     font-family: 'Oswald', sans-serif;
+    height: 40px;
+    min-width: 25rem;
+    background-color: white;
     color: var(--text-color-medium);
 }
 

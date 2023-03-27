@@ -1,11 +1,7 @@
 export const Constants = {
     routes: {
-        home: {
-            link: '/',
-            title: 'Home'
-        },
         propertyList: {
-            link: '/properties',
+            link: '/',
             title: 'Properties'
         },
         propertyAnalytics: {

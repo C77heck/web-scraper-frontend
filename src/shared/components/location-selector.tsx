@@ -31,7 +31,7 @@ export const LocationSelector = ({ onSelect }: LocationSelectorProps) => {
         (async () => get({ url: '/location-options' }))();
     }, []);
 
-    useEffect(() => onSelect(inputs.location?.value?.value), [inputs.location.value]);
+    useEffect(() => onSelect(inputs.location?.value?.value || ''), [inputs.location.value]);
 
     const handleChange = ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
         handleDataChange({ hasError: false, errorMessage: '' });
@@ -44,7 +44,7 @@ export const LocationSelector = ({ onSelect }: LocationSelectorProps) => {
             inputName: 'location'
         });
     };
-    // todo fix the sizing
+
     return <div className={'col-md-40 col-100'}>
         <div className={'w-px-200 position-relative'}>
             <SearchableDropdown

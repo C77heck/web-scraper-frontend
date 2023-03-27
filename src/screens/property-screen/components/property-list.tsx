@@ -2,8 +2,11 @@ import { IProperty, PropertyCard } from './property-card';
 
 export const PropertyList = ({ properties }: { properties: IProperty[] | null }) => {
     if (!properties?.length) {
-        // todo impelemnt the empty list
-        return null;
+        return <div className={'row mt-15'}>
+            <div className={'col-100 position-center my-50'}>
+                <h2 className={'fs-40 color--light'}>Empty list</h2>
+            </div>
+        </div>;
     }
 
     return <div className={'row mt-15'}>

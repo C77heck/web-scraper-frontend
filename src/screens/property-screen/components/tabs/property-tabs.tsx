@@ -18,7 +18,7 @@ export const PropertyTabs = () => {
             <div className={'col-100'}>
                 <LocationSelector onSelect={(location) => setLocation(location)}/>
             </div>
-            <div className={'col-70 display-flex justify-content-start'}>
+            <div className={'display-flex col-70 align-items-center'}>
                 <TabSelector
                     activeTab={activeTab}
                     title={'flats'}
@@ -30,15 +30,13 @@ export const PropertyTabs = () => {
                     onSelect={(tab) => setActiveTab(tab)}
                 />
                 <FilterGroup onSelect={(sort) => setSort(sort)}/>
-
             </div>
-
             <div className={'col-30 display-flex justify-content-end'}>
                 <SearchInput onValueChange={setSearch}/>
             </div>
         </div>
         <TabContent
-            url={`/by-location/kecskemet/${activeTab}?location=${location}`}
+            url={`/by-location/${location}/${activeTab}`}
             activeTab={activeTab}
             query={{ sort, search }}
         />

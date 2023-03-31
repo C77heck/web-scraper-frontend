@@ -26,6 +26,8 @@ export const LocationSelector = ({ onSelect }: LocationSelectorProps) => {
         (async () => get({ url: '/location-options' }))();
     }, []);
 
+    useEffect(() => inputHandler({ value: data?.locations?.[0], valid: false, inputName: 'location' }), [data]);
+
     useEffect(() => onSelect(inputs.location?.value?.value || ''), [inputs.location.value]);
 
     const handleChange = ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {

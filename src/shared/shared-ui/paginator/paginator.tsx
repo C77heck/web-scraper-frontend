@@ -172,7 +172,7 @@ export class Paginator extends React.Component<PaginatorProps, PaginatorState> {
         const end = this.state.paginationMap?.end;
         const middle = this.state.paginationMap?.middle;
 
-        return <div className={'position-center py-6 mt-7'}>
+        return <div className={'position-center py-6 mt-7 col-100'}>
             {this.renderPrev()}
             {this.renderOption({ ...this.props, item: start })}
             {startDot && this.renderOption({ ...this.props, item: startDotRef, isDot: true })}

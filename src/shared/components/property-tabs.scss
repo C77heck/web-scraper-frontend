@@ -26,8 +26,9 @@
     &--active {
         background-color: var(--color-success-1);
 
-        & span {
-            //color: var(--text-color-light);
-        }
     }
+}
+
+.active-link {
+    color: var(--color-yellow-light);
 }

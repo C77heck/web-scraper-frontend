@@ -9,6 +9,7 @@ export interface SearchableDropdownProps extends Omit<DropdownProps<OptionProps>
     handleChange: (e: any) => void;
     onClickHandler: (onChange: any, value: OptionProps) => void;
     value: OptionProps;
+    disabledSearch?: boolean;
 }
 
 export class SearchableDropdown extends AbstractDropdown<SearchableDropdownProps, DropdownState> {
@@ -88,7 +89,7 @@ export class SearchableDropdown extends AbstractDropdown<SearchableDropdownProps
 
     public renderDropdownContent() {
         return <>
-            {this.renderSearchInput()}
+            {!this.props.disabledSearch && this.renderSearchInput()}
             {(this.state.searchedOptions || []).map(option => this.renderOption(option))}
         </>;
     }

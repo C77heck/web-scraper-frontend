@@ -5,18 +5,13 @@ import { useForm } from '../hooks/form.hook';
 import { useInput } from '../hooks/input.hook';
 import { OptionProps } from '../shared-ui/abstract.dropdown';
 
-export interface ValidatorInterface {
-    hasError: boolean;
-    errorMessage: string;
-}
-
 export interface LocationSelectorProps {
     onSelect: (location: string) => void;
 }
 
 export const LocationSelector = ({ onSelect }: LocationSelectorProps) => {
-    const { get, loading, data, error } = useClient<{ locations: OptionProps[] }>();
-    const { state, handleDataChange, focusChange } = useInput({ hasError: false, isInFocus: true, errorMessage: '' });
+    const { get, data } = useClient<{ locations: OptionProps[] }>();
+    const { state, handleDataChange } = useInput({ hasError: false, isInFocus: true, errorMessage: '' });
     const { inputHandler, inputState: { inputs } } = useForm({
         inputs: {
             location: {
@@ -48,6 +43,7 @@ export const LocationSelector = ({ onSelect }: LocationSelectorProps) => {
     return <div className={'col-md-40 col-100'}>
         <div className={'w-px-200 position-relative'}>
             <SearchableDropdown
+                disabledSearch={true}
                 inputClasses={'mb-30'}
                 currentValue={''}
                 handleChange={handleChange}

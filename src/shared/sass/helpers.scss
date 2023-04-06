@@ -508,6 +508,9 @@
     }
 
     @for $i from 1 through 10 {
+        .#{right- + $i} {
+            right: $i + px !important;
+        }
         .#{border-width- + $i} {
             border-bottom-width: $i + px !important;
         }

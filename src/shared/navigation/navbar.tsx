@@ -5,7 +5,7 @@ import { Portal } from '../shared-ui/portal';
 import './navbar.scss';
 
 export const NavBar = (props: any) => {
-    const { propertyList, propertyAnalytics, specialFollows } = Constants.routes;
+    const { propertyList, propertyAnalytics, specialFollows, watchList } = Constants.routes;
     const { pathname } = useLocation();
 
     const getColor = useCallback((link: string) => {
@@ -23,6 +23,9 @@ export const NavBar = (props: any) => {
             <div className={'col-50 display-flex justify-content-space-between'}>
                 <NavLink className={getColor(propertyList.link)} to={propertyList.link}>
                     {propertyList.title}
+                </NavLink>
+                <NavLink className={getColor(watchList.link)} to={watchList.link}>
+                    {watchList.title}
                 </NavLink>
                 <NavLink className={getColor(specialFollows.link)} to={specialFollows.link}>
                     {specialFollows.title}

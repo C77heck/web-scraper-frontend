@@ -8,7 +8,8 @@ export interface ClientOptions {
 }
 
 export interface ClientPostOptions extends ClientOptions {
-    data: object;
+    url: string;
+    data?: object;
 }
 
 export const useClient = <TData>() => {
@@ -87,5 +88,27 @@ export const useClient = <TData>() => {
         }
     };
 
-    return { get, post, put, error, data, loading };
+    const deleteItem = async (options: ClientPostOptions) => {
+        try {
+            setLoading(true);
+
+            const url = `${baseUrl}${options.url}`;
+
+            const response = await superagent
+                .put(url)
+                .send(options.data);
+
+            if (!response.ok) {
+                throw new HttpError('Something went wrong');
+            }
+
+            setData(response.body);
+        } catch (e) {
+            setError(e);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return { get, post, put, deleteItem, error, data, loading };
 };

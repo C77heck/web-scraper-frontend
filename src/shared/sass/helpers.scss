@@ -508,9 +508,6 @@
     }
 
     @for $i from 1 through 10 {
-        .#{right- + $i} {
-            right: $i + px !important;
-        }
         .#{border-width- + $i} {
             border-bottom-width: $i + px !important;
         }
@@ -563,6 +560,9 @@
         }
         .#{top-px- + $i} {
             top: $i * 1 + px !important;
+        }
+        .#{right-px- + $i} {
+            right: $i * 1 + px !important;
         }
         .#{border-radius- + $i} {
             border-radius: $i + px !important;

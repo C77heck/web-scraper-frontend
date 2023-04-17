@@ -59,6 +59,8 @@ export const useClient = <TData>() => {
             }
 
             setData(response.body);
+
+            return response.body;
         } catch (e) {
             setError(e);
         } finally {
@@ -81,6 +83,8 @@ export const useClient = <TData>() => {
             }
 
             setData(response.body);
+
+            return response.body;
         } catch (e) {
             setError(e);
         } finally {
@@ -95,7 +99,7 @@ export const useClient = <TData>() => {
             const url = `${baseUrl}${options.url}`;
 
             const response = await superagent
-                .put(url)
+                .delete(url)
                 .send(options.data);
 
             if (!response.ok) {
@@ -103,6 +107,8 @@ export const useClient = <TData>() => {
             }
 
             setData(response.body);
+
+            return response.body;
         } catch (e) {
             setError(e);
         } finally {

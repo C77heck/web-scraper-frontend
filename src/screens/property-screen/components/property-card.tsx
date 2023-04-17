@@ -1,12 +1,16 @@
 import moment from 'moment';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useClient } from '../../../shared/hooks/client.hook';
 import { handleErrors } from '../../../shared/libs/handle-errors';
 import { priceFormat } from '../../../shared/libs/helpers';
+import { HttpError } from '../../../shared/libs/http-error';
 import { FavouriteIcon } from '../../../shared/shared-ui/icons/icons';
 import './property-card.scss';
 
 export interface IProperty {
+    isWatched: boolean;
+    watchlistId?: string;
     _id: string;
     location: string;
     crawlerName: string;
@@ -31,28 +35,56 @@ const PropertyDisplay = (props: { title: string, value: string | number }) => {
 
 export const PropertyCard = ({ property }: { property: IProperty }) => {
     const { post, deleteItem, loading, error } = useClient();
-    // todo need to get if it is being watched. make it an effective one not like sending 20 requests...
-    // need the watchlistId too.
-    // colour up the favourite icon as needed
-    // figure out the data we want to watch. also a view page where we can see charts and changes to the thikng.
-    const handleWatchList = async () => {
+    const [watchlistId, setWatchlistId] = useState(property?.watchlistId || '');
+
+    useEffect(() => console.log('trigger it'), [watchlistId]);
+    const handleWatchList = async () => !watchlistId ? addToWatchList() : removedFromWatchList();
+
+    const addToWatchList = async () => {
         try {
-            await post({ url: '/add-to-watch-list', data: { href: property.href } });
-            //  await deleteItem({ url: `/remove-from-watch-list/${watchlistId}` });
+            const hrefId = property.href.match(/\/(\d+)/);
+
+            const response = await post({ url: '/add-to-watch-list', data: { href: hrefId?.[1] || '' } });
+
+            if (!response?._id) {
+                throw new HttpError('Something went wrong');
+            }
+
+            setWatchlistId(response._id);
         } catch (e) {
             handleErrors(e);
         }
     };
 
-    return <Link to={property.href} target={'_blank'}>
-        <div className={'property-card box-shadow m-10 position-relative'}>
-            <FavouriteIcon className={'position-absolute right-10'} width={20} onClick={handleWatchList}/>
+    const removedFromWatchList = async () => {
+        try {
+            if (!watchlistId) {
+                return;
+            }
+
+            const response = await deleteItem({ url: `/remove-from-watch-list/${watchlistId}` });
+
+            if (!response) {
+                throw new HttpError('Something went wrong');
+            }
+
+            setWatchlistId('');
+        } catch (e) {
+            handleErrors(e);
+        }
+    };
+
+    const colourClass = watchlistId ? 'color--yellow' : 'color--dark-3';
+
+    return <div className={'property-card box-shadow m-10 position-relative'}>
+        <FavouriteIcon className={`position-absolute right-px-8 top-px-7 hover-opacity ${colourClass}`} width={20} onClick={handleWatchList}/>
+        <Link to={property.href} target={'_blank'}>
             <PropertyDisplay title={'Address'} value={property.address}/>
             <PropertyDisplay title={'Unit price'} value={`${Math.round(property.sqmPrice)} / m2`}/>
             <PropertyDisplay title={'Size'} value={`${property.size} m2`}/>
             <PropertyDisplay title={'Price'} value={priceFormat(property.total)}/>
             <PropertyDisplay title={'Last day on'} value={moment(property.lastDayOn).format('YYYY-MM-DD')}/>
             <PropertyDisplay title={'Number of days on'} value={property.numberOfDaysAdvertised}/>
-        </div>
-    </Link>;
+        </Link>
+    </div>;
 };

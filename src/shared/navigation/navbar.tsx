@@ -10,9 +10,7 @@ export const NavBar = (props: any) => {
 
     const getColor = useCallback((link: string) => {
         const genericClasses = 'text-decoration-none uppercase fs-mlg-17 fs-14 white-space-nowrap py-20 fw--700';
-        console.log({
-            pathname, link
-        });
+
         return pathname === link
             ? `${genericClasses} active-link`
             : `${genericClasses}`;

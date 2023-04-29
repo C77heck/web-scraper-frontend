@@ -451,9 +451,6 @@
         .#{min-height- + $i} {
             min-height: $i + px !important;
         }
-        .#{min-height-vh- + $i} {
-            min-height: $i + vh !important;
-        }
         .#{fix-height- + $i} {
             min-height: $i + px !important;
             max-height: $i + px !important;
@@ -465,9 +462,7 @@
         .#{max-height- + $i} {
             max-height: $i + px !important;
         }
-        .#{max-height-vh- + $i} {
-            max-height: $i + vh !important;
-        }
+
         .#{max-width- + $i} {
             max-width: $i + px !important;
         }
@@ -479,6 +474,23 @@
         }
         .#{w-px- + $i} {
             width: $i + px !important;
+        }
+    }
+
+    @for $i from 1 through 10 {
+        .#{border-width- + $i} {
+            border-bottom-width: $i + px !important;
+        }
+    }
+    @for $i from 1 through 100 {
+        .#{min-height-vh- + $i} {
+            min-height: $i + vh !important;
+        }
+        .#{max-height-vh- + $i} {
+            max-height: $i + vh !important;
+        }
+        .#{border-radius-px- + $i} {
+            border-radius: $i + px !important;
         }
         .#{fs- + $i} {
             font-size: $i + px !important;
@@ -502,17 +514,6 @@
             }
         }
 
-        .#{border-radius-px- + $i} {
-            border-radius: $i + px !important;
-        }
-    }
-
-    @for $i from 1 through 10 {
-        .#{border-width- + $i} {
-            border-bottom-width: $i + px !important;
-        }
-    }
-    @for $i from 1 through 100 {
         .#{h- + $i} {
             height: $i * 1% !important;
         }
